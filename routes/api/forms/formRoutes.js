@@ -5,6 +5,7 @@ const registrationController = require("../../../controllers/registration/regist
 const {
   getTeamDetails,
 } = require("../../../controllers/registration/getTeamDetails");
+const { removeMember } = require("../../../controllers/registration/removeMember");
 const { verifyToken } = require("../../../middleware/verifyToken");
 const { checkAccess } = require("../../../middleware/access/checkAccess");
 const multer = require("multer");
@@ -20,6 +21,7 @@ router.post("/contact", formController.contact);
 router.use(verifyToken);
 
 router.get("/teamDetails/:formId", checkAccess("USER"), getTeamDetails);
+router.delete("/removeMember/:formId", checkAccess("USER"), removeMember);
 
 router.use(
   "/register",
